@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Clase 38 - Recursividad</title>
+  </head>
+  <body>
+    <script>
+      /*
+        13  |_4___
+
+        13 - 4 = 9      1
+        9 - 4 = 5       1
+        5 - 4 = 1       1
+        1 - 4 = -3      0
+      */
+      function divisionEntera(dividendo, divisor) {
+        if (dividendo < divisor) {
+          return 0
+        }
+
+        return 1 + divisionEntera(dividendo - divisor, divisor)
+      }
+    </script>
+  </body>
+</html>
