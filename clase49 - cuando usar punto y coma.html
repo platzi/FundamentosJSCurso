@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Cambiando el contexto al llamar a una función</title>
+  </head>
+  <body>
+    <script>
+      console.log('Hola mi nombre es Sacha')
+      ;[1, 2, 3].forEach(n => console.log(n * 2))
+
+      const nombre = 'Sacha'
+      console.log('Hola mi nombre es Sacha');
+      `${nombre} es un desarrollador`
+
+      function calcularDoble(numero) {
+        return {
+          original: numero, doble: numero * 2
+        }
+      }
+
+    </script>
+  </body>
+</html>
