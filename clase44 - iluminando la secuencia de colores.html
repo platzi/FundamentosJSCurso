@@ -98,7 +98,6 @@
       const naranja = document.getElementById('naranja')
       const verde = document.getElementById('verde')
       const btnEmpezar = document.getElementById('btnEmpezar')
-      const VELOCIDAD = 0.5
 
       class Juego {
         constructor() {
@@ -126,23 +125,29 @@
           this.iluminarSecuencia()
         }
 
-        transformarNumeroAColor(num) {
-          if (num === 0) return 'celeste'
-          if (num === 1) return 'violeta'
-          if (num === 2) return 'naranja'
-          if (num === 3) return 'verde'
+        transformarNumeroAColor(numero) {
+          switch (numero) {
+            case 0:
+              return 'celeste'
+            case 1:
+              return 'violeta'
+            case 2:
+              return 'naranja'
+            case 3:
+              return 'verde'
+          }
         }
 
         iluminarSecuencia() {
           for (let i = 0; i < this.nivel; i++) {
             const color = this.transformarNumeroAColor(this.secuencia[i])
-            setTimeout(() => this.iluminarColor(color), 1500 * i * VELOCIDAD)
+            setTimeout(() => this.iluminarColor(color), 1000 * i)
           }
         }
 
         iluminarColor(color) {
           this.colores[color].classList.add('light')
-          setTimeout(() => this.apagarColor(color), 700 * VELOCIDAD)
+          setTimeout(() => this.apagarColor(color), 350)
         }
 
         apagarColor(color) {
