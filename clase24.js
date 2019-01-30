@@ -19,9 +19,10 @@ Persona.prototype.soyAlto = function () {
   return this.altura > 1.8
 }
 
-function Desarrollador(nombre, apellido) {
+function Desarrollador(nombre, apellido, altura) {
   this.nombre = nombre
   this.apellido = apellido
+  this.altura = altura
 }
 
 heredaDe(Desarrollador, Persona)
