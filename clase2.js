@@ -9,3 +9,5 @@ var cantidadDeLetrasDelNombre = nombre.length
 var nombreCompleto = `${nombre} ${apellido.toUpperCase()}`
 
 var str = nombre.substr(1, 2)
+var ultimoCaracter  = cantidadDeLetrasDelNombre - 1
+var ultimaLetra = nombre.charAt(ultimoCaracter)
