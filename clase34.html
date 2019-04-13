@@ -4,12 +4,16 @@
     <meta charset="utf-8">
     <title>Simon Dice</title>
     <style>
+
       body {
         margin: 0;
         background: #dedede;
         display: flex;
         align-items: center;
         height: 100vh;
+      }
+      * {
+      	font-family: 'Hind';
       }
       .gameboard {
         height: 100vh;
@@ -78,14 +82,15 @@
       <div id="verde" class="color verde right" data-color="verde"></div>
       <button id="btnEmpezar" class="btn-start" onclick="empezarJuego()">Empezar a jugar!</button>
     </div>
-    <script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <script>
     const btnEmpezar = document.getElementById('btnEmpezar')
     const celeste = document.getElementById('celeste')
     const violeta = document.getElementById('violeta')
     const naranja = document.getElementById('naranja')
     const verde = document.getElementById('verde')
-    const ULTIMO_NIVEL = 10
+    const ULTIMO_NIVEL = 6
       class Juego {
       	constructor(){
       		this.inicializar()
@@ -96,7 +101,8 @@
       	inicializar(){
       		this.elegirColor = this.elegirColor.bind(this)
       		this.siguienteNivel = this.siguienteNivel.bind(this)
-      		btnEmpezar.classList.add('hide')
+      		this.inicializar =   this.inicializar.bind(this)
+      		this.togglebtnEmpezar()
       		this.nivel = 1
       		this.colores = {
       			celeste,
@@ -106,6 +112,13 @@
       		}
       	}
 
+      	togglebtnEmpezar(){
+      		if (btnEmpezar.classList.contains('hide')) {
+      			btnEmpezar.classList.remove('hide')     			
+      		}else{
+      			btnEmpezar.classList.add('hide')
+      		}
+      	}
       	generarSecuencia(){
       		this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
       	}
@@ -170,6 +183,18 @@
       		this.colores.naranja.removeEventListener('click', this.elegirColor)
       		this.colores.verde.removeEventListener('click', this.elegirColor)
       	}
+      	ganoElJuego() {
+      		swal('Platzi', 'Felicitaciones, ganaste', 'success')
+      		.then(this.inicializar)
+      	}
+      	perdioElJuego() {
+      		swal('Platzi', 'Perdiste', 'error')
+      		.then( () => {
+      			this.eliminarEventosClick()
+      			this.inicializar()
+      		})
+      	}
+
 
       	elegirColor(ev) {
       		const nombreColor = ev.target.dataset.color 
@@ -181,14 +206,14 @@
       				this.nivel ++
       				this.eliminarEventosClick()
       				if (this.nivel === (ULTIMO_NIVEL + 1)) {
-      					// Ganó
+      					this.ganoElJuego()
       				}else{
       					setTimeout(this.siguienteNivel, 1500)	
       				}
 
       			}
       		} else {
-      			//perdió
+      			this.perdioElJuego()
       		}
       	}
       }
